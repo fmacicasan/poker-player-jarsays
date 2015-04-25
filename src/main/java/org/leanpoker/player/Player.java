@@ -10,6 +10,7 @@ public class Player {
     static final String VERSION = "b00lder2 away";
 
     public static int betRequest(GameState gameState) throws IOException {
+    	BetLogic betLogic = new BetLogic(gameState);
         System.out.println("request:" + gameState);
         System.out.println("Will return default");
 
