@@ -46,9 +46,6 @@ public class BetLogic {
 		int noPlayers = gameState.getPlayers().size();
 		int noCommunityCards = gameState.getCommunityCards().size();
 		
-		//call the ranking Api
-		int rankId = getRankId();
-		
 		if (noCommunityCards < 3) {
 			Card card1 = cards.get(0);
 			Card card2 = cards.get(1);
@@ -58,6 +55,8 @@ public class BetLogic {
 				return 0;
 			}
 		}
+		
+		int rankId = getRankId();
 		
 		if (rankId < 1) return 0;
 		
