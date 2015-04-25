@@ -52,6 +52,7 @@ public class BetLogic {
 			if (hasChanceToWin(card1, card2)) {
 				return call();
 			} else {
+				System.out.println("No chanche to win " + card1.getRank() + "  " + card2.getRank());
 				return 0;
 			}
 		}
