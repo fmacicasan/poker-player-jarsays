@@ -1,8 +1,10 @@
 package org.leanpoker.player;
 
 import com.google.gson.JsonElement;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
@@ -16,18 +18,12 @@ import java.io.InputStreamReader;
 public class Ranking {
 
     public static void callRanking(JsonElement requestElement) throws IOException {
-        String url = "http://rainman.leanpoker.org/rank'?cards=[\n" +
-                "    {\"rank\":\"5\",\"suit\":\"diamonds\"},\n" +
-                "    {\"rank\":\"6\",\"suit\":\"diamonds\"},\n" +
-                "    {\"rank\":\"7\",\"suit\":\"diamonds\"},\n" +
-                "    {\"rank\":\"7\",\"suit\":\"spades\"},\n" +
-                "    {\"rank\":\"8\",\"suit\":\"diamonds\"},\n" +
-                "    {\"rank\":\"9\",\"suit\":\"diamonds\"}\n" +
-                "]'";
+        String url = "http://rainman.leanpoker.org/rank";
 
         CloseableHttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(url);
-
+        HttpPost request = new HttpPost(url);
+        request.addHeader("Content-Type","application/x-www-form-urlencoded");
+        request.setEntity(new UrlEncodedFormEntity(null));
         // add request header
         CloseableHttpResponse response = client.execute(request);
 
