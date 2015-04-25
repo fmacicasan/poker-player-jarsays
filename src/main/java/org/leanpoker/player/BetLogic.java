@@ -53,7 +53,7 @@ public class BetLogic {
 		int callAmount = call();
 		Card card1 = cards.get(0);
 		Card card2 = cards.get(1);
-		
+		if (noPlayers > 2) return 0;
 		if (noCommunityCards < 3) {
 			if (hasChanceToWin(card1, card2)) {
 				if (callAmount >= chipsAvailable) return 0;
