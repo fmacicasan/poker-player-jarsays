@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Player {
 
     protected static final Integer DEFAULT_RETURN = 150;
-    static final String VERSION = "b00lder235 away";
+    static final String VERSION = "cards v1.0";
     static final String OUR_TEAM = "Jarsays";
 
     public static int betRequest(GameState gameState) throws IOException {

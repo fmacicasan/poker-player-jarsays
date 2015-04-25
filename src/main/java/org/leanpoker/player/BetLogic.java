@@ -94,7 +94,7 @@ public class BetLogic {
 	}
 
 	private int call() {
-		return currentBuyIn - bet;
+		return currentBuyIn - bet + minRaise;
 	}
 	
 	private int raise (int raisePlus) {
