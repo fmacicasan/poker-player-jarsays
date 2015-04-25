@@ -58,15 +58,22 @@ public class BetLogic {
 		
 		int rankId = getRankId();
 		
-		if (rankId < 1) return 0;
+		if (rankId < 1) {
+			System.out.println("rankId<1 currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
+			return 0;
+		}
 		
 		if (noPlayers > 4) {
-			if (rankId < 2) { 
+			if (rankId < 2) {
+				System.out.println("rankId<2 currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
 				return 0;
 			}
 		}
 		
-		if (rankId < 2 && chipsAvailable < minRaise) return 0;
+		if (rankId < 2 && chipsAvailable < minRaise) {
+			System.out.println("rankId<2 chipsAvailable < minRaise currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
+			return 0;
+		}
 		
 		if (rankId > 2) return raise(minRaise);
 		
@@ -78,9 +85,9 @@ public class BetLogic {
 		allCards.addAll(cards);
 		allCards.addAll(gameState.getCommunityCards());
 		
-		int rankId;
+		int rankId = 0;
 		try {
-			rankId = new Ranking().getBestHand(allCards).getRank();
+			Ranking.getBestHand(allCards).getRank();
 		} catch (IOException e) {
 			e.printStackTrace();
 			rankId = 0;
@@ -110,10 +117,14 @@ public class BetLogic {
 	}
 
 	private int call() {
-		return currentBuyIn - bet + minRaise;
+		int callAmount = currentBuyIn - bet + minRaise;
+		System.out.println("callAmount=" + callAmount + " currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
+		return callAmount;
 	}
 	
 	private int raise (int raisePlus) {
-		return currentBuyIn - bet + minRaise + raisePlus;
+		int raiseAmount = currentBuyIn - bet + minRaise + raisePlus;
+		System.out.println("raiseAmount=" + raiseAmount + " currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise + " raisePlus=" + raisePlus);
+		return raiseAmount;
 	}
 }
