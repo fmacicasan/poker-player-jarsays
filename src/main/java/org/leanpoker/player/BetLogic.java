@@ -71,12 +71,12 @@ public class BetLogic {
 			}
 		}
 		
-		if (rankId < 2 && chipsAvailable < minRaise) {
-			System.out.println("rankId<2 chipsAvailable < minRaise currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
+		if (rankId < 2 && chipsAvailable < call()) {
+			System.out.println("rankId<2 chipsAvailable < minRaise currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise + "chipsAvailable=" + chipsAvailable);
 			return 0;
 		}
 		
-		if (rankId > 2) return raise(minRaise);
+		if (rankId > 2) return raise(0);
 		
 		return call();
 	}
