@@ -88,6 +88,8 @@ public class BetLogic {
 		
 		if (callAmount >= chipsAvailable && rankId <= 4) return 0;
 		
+		if (rankId > 6) return chipsAvailable;
+		
 		return callAmount;
 	}
 
