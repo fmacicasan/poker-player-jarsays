@@ -123,8 +123,8 @@ public class BetLogic {
 	}
 
 	private int call() {
-		int callAmount = currentBuyIn - bet + minRaise;
-		System.out.println("callAmount=" + callAmount + " currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
+		int callAmount = currentBuyIn - bet;
+		System.out.println("callAmount=" + callAmount + " currentBuyIn=" + currentBuyIn + " bet=" + bet);
 		return callAmount;
 	}
 	
