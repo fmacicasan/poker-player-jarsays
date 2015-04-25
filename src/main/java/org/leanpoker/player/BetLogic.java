@@ -100,7 +100,7 @@ public class BetLogic {
 		String rank1 = card1.getRank();
 		String rank2 = card2.getRank();
 	
-		if (isGreatRank(rank1) && isGreatRank(rank2)) return true;
+		if (isGreatRank(rank1) || isGreatRank(rank2)) return true;
 		if (rank1.equals(rank2)) return true;
 		
 		return false;
