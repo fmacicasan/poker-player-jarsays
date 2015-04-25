@@ -20,7 +20,7 @@ public class JsonParserTest {
 
     @After
     public void tearDown() throws Exception {
-
+        c1 = null;
     }
 
     @Test
