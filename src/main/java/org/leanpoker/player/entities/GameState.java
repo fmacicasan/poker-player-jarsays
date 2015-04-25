@@ -1,5 +1,7 @@
 package org.leanpoker.player.entities;
 
+import org.leanpoker.player.Player;
+
 import java.util.List;
 
 /**
@@ -123,6 +125,15 @@ public class GameState {
 
     public void setCommunityCards(List<Card> communityCards) {
         this.communityCards = communityCards;
+    }
+
+    public PlayerDetails getPlayer(String name) {
+        for (PlayerDetails player : getPlayers()) {
+            if (player.getName().equalsIgnoreCase(name)) {
+                return player;
+            }
+        }
+        return null;
     }
 
     @Override
