@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class Player {
 
-    static final String VERSION = "b00ld away";
+    static final String VERSION = "b00lder away";
 
-    protected static final Integer DEFAULT_RETURN = 200;
+    protected static final Integer DEFAULT_RETURN = 400;
 
     public static int betRequest(JsonElement request) throws IOException {
 
