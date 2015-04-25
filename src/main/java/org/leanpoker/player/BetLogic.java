@@ -1,5 +1,7 @@
 package org.leanpoker.player;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,7 +47,7 @@ public class BetLogic {
 		int noCommunityCards = gameState.getCommunityCards().size();
 		
 		//call the ranking Api
-		int rankId = 3;
+		int rankId = getRankId();
 		
 		if (noCommunityCards < 3) {
 			Card card1 = cards.get(0);
@@ -60,16 +62,31 @@ public class BetLogic {
 		if (rankId < 1) return 0;
 		
 		if (noPlayers > 4) {
-//			if (rankId < 2) { 
+			if (rankId < 2) { 
 				return 0;
-//			}
+			}
 		}
 		
-//		if (rankId < 2 && chipsAvailable < minRaise) return 0;
+		if (rankId < 2 && chipsAvailable < minRaise) return 0;
 		
-//		if (rankId > 2) return raise(minRaise);
+		if (rankId > 2) return raise(minRaise);
 		
 		return call();
+	}
+
+	private int getRankId() {
+		List<Card> allCards = new ArrayList<Card>();
+		allCards.addAll(cards);
+		allCards.addAll(gameState.getCommunityCards());
+		
+		int rankId;
+		try {
+			rankId = new Ranking().getBestHand(allCards).getRank();
+		} catch (IOException e) {
+			e.printStackTrace();
+			rankId = 0;
+		}
+		return rankId;
 	}
 	
 	private boolean hasChanceToWin(Card card1, Card card2) {
