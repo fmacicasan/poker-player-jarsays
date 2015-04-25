@@ -6,5 +6,5 @@
 build
 .gradle
 .idea
-.iml
+*.iml
 poker-player-java.iml
