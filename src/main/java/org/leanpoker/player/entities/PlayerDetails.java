@@ -70,4 +70,17 @@ public class PlayerDetails {
     public void setHoleCards(List<Card> holeCards) {
         this.holeCards = holeCards;
     }
+
+    @Override
+    public String toString() {
+        return "PlayerDetails{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", version='" + version + '\'' +
+                ", stack=" + stack +
+                ", bet=" + bet +
+                ", holeCards=" + holeCards +
+                '}';
+    }
 }

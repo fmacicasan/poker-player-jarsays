@@ -124,4 +124,23 @@ public class GameState {
     public void setCommunityCards(List<Card> communityCards) {
         this.communityCards = communityCards;
     }
+
+    @Override
+    public String toString() {
+        return "GameState{" +
+                "tournamentId='" + tournamentId + '\'' +
+                ", gameId='" + gameId + '\'' +
+                ", round=" + round +
+                ", betIndex=" + betIndex +
+                ", smallBlind=" + smallBlind +
+                ", currentBuyIn=" + currentBuyIn +
+                ", pot=" + pot +
+                ", minimumRaise=" + minimumRaise +
+                ", dealer=" + dealer +
+                ", orbits=" + orbits +
+                ", inAction=" + inAction +
+                ", players=" + players +
+                ", communityCards=" + communityCards +
+                '}';
+    }
 }
