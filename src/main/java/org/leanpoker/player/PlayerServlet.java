@@ -20,6 +20,7 @@ public class PlayerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        long now = System.currentTimeMillis();
         if (req.getParameter("action").equals("bet_request")) {
             String gameState = req.getParameter("game_state");
 
@@ -33,5 +34,6 @@ public class PlayerServlet extends HttpServlet {
         if (req.getParameter("action").equals("version")) {
             resp.getWriter().print(Player.VERSION);
         }
+        System.out.println("Request took " + (System.currentTimeMillis() - now) + ".");
     }
 }
