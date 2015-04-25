@@ -13,7 +13,7 @@ public class Player {
         System.out.println("request:" + gameState);
         System.out.println("Will return default");
 
-        return DEFAULT_RETURN;
+        return gameState.getMinimumRaise() == 0 ? 0: DEFAULT_RETURN;
     }
 
     public static void showdown(GameState gameState) {
