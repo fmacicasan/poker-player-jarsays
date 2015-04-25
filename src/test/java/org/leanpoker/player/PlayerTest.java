@@ -13,7 +13,7 @@ public class PlayerTest {
 
         JsonElement jsonElement = new JsonParser().parse("{\"key1\": \"value1\", \"key2\": \"value2\"}");
 
-        assertEquals(100, Player.betRequest(jsonElement));
+        assertEquals(Player.DEFAULT_RETURN.intValue(), Player.betRequest(jsonElement));
 
     }
 }
