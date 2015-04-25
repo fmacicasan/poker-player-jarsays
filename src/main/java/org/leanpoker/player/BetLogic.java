@@ -67,7 +67,7 @@ public class BetLogic {
 		
 		int rankId = getRankId();
 		
-		if (noCommunityCards == 3 && rankId > 1) {
+		if (noCommunityCards == 3 && rankId >= 1) {
 			if (callAmount >= chipsAvailable) return 0;
 			
 			return call();
@@ -122,8 +122,8 @@ public class BetLogic {
 		String rank2 = card2.getRank();
 		int pot = gameState.getPot();
 	
-		if (isGreatRank(rank1) || isGreatRank(rank2) && pot < 50) return true;
 		if (rank1.equals(rank2)) return true;
+		if (isGreatRank(rank1) || isGreatRank(rank2) && pot < 50) return true;
 		
 		return false;
 	}
