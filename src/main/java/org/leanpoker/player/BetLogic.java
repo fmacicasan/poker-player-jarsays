@@ -53,7 +53,7 @@ public class BetLogic {
 		int callAmount = call();
 		Card card1 = cards.get(0);
 		Card card2 = cards.get(1);
-		if (!card1.getRank().equals(card2.getRank()) &&noPlayers > 2) return 0;
+
 		if (noCommunityCards < 3) {
 			if (hasChanceToWin(card1, card2)) {
 				if (callAmount >= chipsAvailable) return 0;
@@ -66,6 +66,11 @@ public class BetLogic {
 		}
 		
 		int rankId = getRankId();
+
+		if (rankId < 1) {
+			System.out.println("rankId<1 currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
+			return 0;
+		}
 		
 		if (rankId == 1 && !card1.getRank().equals(card2.getRank())) return 0;
 		
@@ -76,13 +81,9 @@ public class BetLogic {
 		}
 		
 		
-		if (rankId < 1) {
-			System.out.println("rankId<1 currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
-			return 0;
-		}
 		
-		if (noPlayers > 4) {
-			if (rankId < 2) {
+		if (noPlayers >= 4) {
+			if (rankId < 2 && !card1.getRank().equals(card2.getRank())) {
 				System.out.println("rankId<2 currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
 				return 0;
 			}
