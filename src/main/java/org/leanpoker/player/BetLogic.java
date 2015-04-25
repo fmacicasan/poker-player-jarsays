@@ -91,11 +91,13 @@ public class BetLogic {
 			return 0;
 		}
 		
-		if (rankId > 4) return raise(0);
+		
 		
 		if (callAmount >= chipsAvailable && rankId <= 4) return 0;
 		
 		if (rankId > 6) return chipsAvailable;
+		if (rankId > 5) return raise((int)(chipsAvailable * 0.1));
+		if (rankId > 4) return raise(0);
 		
 		return callAmount;
 	}
