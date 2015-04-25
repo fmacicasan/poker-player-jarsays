@@ -4,6 +4,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.lang.reflect.Type;
+
 /**
  * @author octavian
  * @since 25.04.2015
@@ -23,5 +25,9 @@ public class JsonParser {
 
     public static <T> T fromJson(String json, Class<T> tClass) {
         return gson.fromJson(json, tClass);
+    }
+
+    public static <T> T fromJson(String json, Type typeOfT) {
+        return gson.fromJson(json, typeOfT);
     }
 }

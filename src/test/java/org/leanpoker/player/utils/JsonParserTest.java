@@ -26,7 +26,9 @@ public class JsonParserTest {
     @Test
     public void testFromJson() throws Exception {
         GameState gameState = JsonParser.fromJson(c1, GameState.class);
+
         Assert.assertEquals(7, gameState.getOrbits());
         Assert.assertEquals(1, gameState.getDealer());
+        //TODO: add more
     }
 }
