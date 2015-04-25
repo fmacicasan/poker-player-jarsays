@@ -35,7 +35,12 @@ public class BetLogic {
 		currentBuyIn = gameState.getCurrentBuyIn();
 		minRaise = gameState.getMinimumRaise();
 		
-		StringBuilder sb = new StringBuilder(player.getName() + " cards:");
+		logCards(cards, player.getName());
+		logCards(gameState.getCommunityCards(), "Community cards: ");
+	}
+
+	private void logCards(List<Card> cards, String string) {
+		StringBuilder sb = new StringBuilder(string + " cards:");
 		for (Card card : cards) {
 			sb.append("  " + card);
 		}
@@ -88,7 +93,7 @@ public class BetLogic {
 		
 		int rankId = 0;
 		try {
-			Ranking.getBestHand(allCards).getRank();
+			return Ranking.getBestHand(allCards).getRank();
 		} catch (IOException e) {
 			e.printStackTrace();
 			rankId = 0;
