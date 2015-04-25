@@ -67,6 +67,13 @@ public class BetLogic {
 		
 		int rankId = getRankId();
 		
+		if (noCommunityCards == 3 && rankId > 1) {
+			if (callAmount >= chipsAvailable) return 0;
+			
+			return call();
+		}
+		
+		
 		if (rankId < 1) {
 			System.out.println("rankId<1 currentBuyIn=" + currentBuyIn + " bet=" + bet + " minRaise="+minRaise);
 			return 0;
