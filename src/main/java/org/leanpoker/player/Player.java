@@ -9,7 +9,9 @@ public class Player {
     static final String VERSION = "test version";
 
     public static int betRequest(JsonElement request) {
+
         System.out.println("request:" + request);
+        System.out.println("Will return default");
         return 100;
     }
 
