@@ -50,12 +50,15 @@ public class BetLogic {
 	public int calculate() {
 		int noPlayers = gameState.getPlayers().size();
 		int noCommunityCards = gameState.getCommunityCards().size();
+		int callAmount = call();
 		
 		if (noCommunityCards < 3) {
 			Card card1 = cards.get(0);
 			Card card2 = cards.get(1);
 			if (hasChanceToWin(card1, card2)) {
-				return call();
+				if (callAmount >= chipsAvailable) return 0;
+				
+				return callAmount;
 			} else {
 				System.out.println("No chanche to win " + card1.getRank() + "  " + card2.getRank());
 				return 0;
@@ -81,9 +84,11 @@ public class BetLogic {
 			return 0;
 		}
 		
-		if (rankId > 2) return raise(0);
+		if (rankId > 4) return raise(0);
 		
-		return call();
+		if (callAmount >= chipsAvailable && rankId <= 4) return 0;
+		
+		return callAmount;
 	}
 
 	private int getRankId() {
@@ -125,6 +130,7 @@ public class BetLogic {
 	private int call() {
 		int callAmount = currentBuyIn - bet;
 		System.out.println("callAmount=" + callAmount + " currentBuyIn=" + currentBuyIn + " bet=" + bet);
+		
 		return callAmount;
 	}
 	
