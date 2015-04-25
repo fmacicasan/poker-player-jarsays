@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class Player {
 
-    protected static final Integer DEFAULT_RETURN = 200;
-    static final String VERSION = "b00ld away";
+    static final String VERSION = "b00lder away";
 
+    protected static final Integer DEFAULT_RETURN = 150;
     public static int betRequest(GameState gameState) throws IOException {
         System.out.println("request:" + gameState);
         System.out.println("Will return default");
