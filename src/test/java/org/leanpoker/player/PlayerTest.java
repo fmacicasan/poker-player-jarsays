@@ -21,4 +21,6 @@ public class PlayerTest {
         GameState gameState = JsonParser.fromJson(c1, GameState.class);
         assertEquals(Player.DEFAULT_RETURN.intValue(), Player.betRequest(gameState));
     }
+
+
 }
