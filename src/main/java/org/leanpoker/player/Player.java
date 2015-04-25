@@ -9,7 +9,7 @@ public class Player {
 
     static final String VERSION = "b00lder away";
 
-    protected static final Integer DEFAULT_RETURN = 400;
+    protected static final Integer DEFAULT_RETURN = 150;
 
     public static int betRequest(JsonElement request) throws IOException {
 
