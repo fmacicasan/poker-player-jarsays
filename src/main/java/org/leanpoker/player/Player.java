@@ -18,7 +18,8 @@ public class Player {
 
         PlayerDetails us = gameState.getPlayer(OUR_TEAM);
 
-        return gameState.getMinimumRaise() == 0? gameState.getCurrentBuyIn() - us.getBet() : DEFAULT_RETURN;
+//        return gameState.getMinimumRaise() == 0? gameState.getCurrentBuyIn() - us.getBet() : DEFAULT_RETURN;
+        return betLogic.calculate();
     }
 
     public static void showdown(GameState gameState) {

@@ -1,6 +1,8 @@
 package org.leanpoker.player;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.leanpoker.player.entities.Card;
 import org.leanpoker.player.entities.GameState;
@@ -11,6 +13,9 @@ public class BetLogic {
 	private int chipsAvailable = 0;
 	private GameState gameState;
 	private List<Card> cards;
+	private int bet;
+	private int currentBuyIn;
+	private int minRaise;
 	
 	
 	public BetLogic(GameState gameState) {
@@ -20,18 +25,22 @@ public class BetLogic {
 	}
 
 	private void init(GameState gameState) {
-		for (PlayerDetails player : gameState.getPlayers()) {
-			if (player.getName().equalsIgnoreCase("Jarsays")) {
-				chipsAvailable = player.getStack();
-				cards = player.getHoleCards();
-				break;
-			}
+		int ourId = gameState.getInAction();
+		PlayerDetails player = gameState.getPlayers().get(ourId);
+		chipsAvailable = player.getStack();
+		cards = player.getHoleCards();
+		bet = player.getBet();
+		currentBuyIn = gameState.getCurrentBuyIn();
+		minRaise = gameState.getMinimumRaise();
+		
+		StringBuilder sb = new StringBuilder(player.getName() + " cards:");
+		for (Card card : cards) {
+			sb.append("  " + card);
 		}
+		System.out.println(sb.toString());
 	}
 
 	public int calculate() {
-		int minRaise = gameState.getMinimumRaise();
-		int currentBuyIn =gameState.getCurrentBuyIn();
 		int noPlayers = gameState.getPlayers().size();
 		int noCommunityCards = gameState.getCommunityCards().size();
 		
@@ -39,7 +48,13 @@ public class BetLogic {
 		int rankId = 3;
 		
 		if (noCommunityCards < 3) {
-			return minRaise;
+			Card card1 = cards.get(0);
+			Card card2 = cards.get(1);
+			if (hasChanceToWin(card1, card2)) {
+				return call();
+			} else {
+				return 0;
+			}
 		}
 		
 		if (rankId < 1) return 0;
@@ -54,14 +69,35 @@ public class BetLogic {
 		
 //		if (rankId > 2) return raise(minRaise);
 		
-		return minRaise;
+		return call();
+	}
+	
+	private boolean hasChanceToWin(Card card1, Card card2) {
+		String rank1 = card1.getRank();
+		String rank2 = card2.getRank();
+	
+		if (isGreatRank(rank1) && isGreatRank(rank2)) return true;
+		if (rank1.equals(rank2)) return true;
+		
+		return false;
 	}
 
-	private int raise(int minRaise) {
-		int remainingChips = chipsAvailable - minRaise;
+	private boolean isGreatRank(String rank) {
+		Set<String> goodRanks = new HashSet<String>();
+		goodRanks.add("10");
+		goodRanks.add("J");
+		goodRanks.add("Q");
+		goodRanks.add("K");
+		goodRanks.add("A");
 		
-		if (remainingChips > 0) return minRaise + (int)(chipsAvailable * 0.1);
-		
-		return minRaise;
+		return goodRanks.contains(rank.toUpperCase());
+	}
+
+	private int call() {
+		return currentBuyIn - bet;
+	}
+	
+	private int raise (int raisePlus) {
+		return currentBuyIn - bet + minRaise + raisePlus;
 	}
 }
